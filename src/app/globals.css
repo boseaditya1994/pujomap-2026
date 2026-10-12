@@ -1,0 +1,183 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body), "Noto Sans Bengali", system-ui, sans-serif;
+  --font-heading: var(--font-display), "Noto Serif Bengali", Georgia, serif;
+  --color-maroon: var(--maroon);
+  --color-maroon-deep: var(--maroon-deep);
+  --color-vermilion: var(--vermilion);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-ivory: var(--ivory);
+  --color-verified: var(--verified);
+  --color-verified-soft: var(--verified-soft);
+  --color-caution: var(--caution);
+  --color-caution-soft: var(--caution-soft);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  /* PujoMap palette: warm ivory ground, maroon surfaces, vermilion accents, gold detailing. */
+  --ivory: #fbf5e9;
+  --maroon: #7b1626;
+  --maroon-deep: #4f0d18;
+  --vermilion: #c7301c;
+  --gold: #b98a1e;
+  --gold-soft: #e9c873;
+  --verified: #1c6140;
+  --verified-soft: #e2f0e6;
+  --caution: #7a4b00;
+  --caution-soft: #fbecc8;
+
+  --background: var(--ivory);
+  --foreground: #2b1114;
+  --card: #fffdf7;
+  --card-foreground: #2b1114;
+  --popover: #fffdf7;
+  --popover-foreground: #2b1114;
+  --primary: var(--maroon);
+  --primary-foreground: #fff8ea;
+  --secondary: #f3e7d0;
+  --secondary-foreground: #4a1420;
+  --muted: #f4ebdb;
+  --muted-foreground: #664843;
+  --accent: #f6e3c5;
+  --accent-foreground: #4a1420;
+  --destructive: #b3261e;
+  --border: #e3d2b2;
+  --input: #c9b086;
+  --ring: var(--vermilion);
+  --chart-1: var(--maroon);
+  --chart-2: var(--vermilion);
+  --chart-3: var(--gold);
+  --chart-4: #664843;
+  --chart-5: #2b1114;
+  --radius: 0.75rem;
+  --sidebar: #fffdf7;
+  --sidebar-foreground: #2b1114;
+  --sidebar-primary: var(--maroon);
+  --sidebar-primary-foreground: #fff8ea;
+  --sidebar-accent: #f6e3c5;
+  --sidebar-accent-foreground: #4a1420;
+  --sidebar-border: #e3d2b2;
+  --sidebar-ring: var(--vermilion);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Thin double gold rule used under headings and on maroon surfaces. */
+  .gold-rule {
+    height: 5px;
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    opacity: 0.7;
+  }
+  .field {
+    @apply border-input bg-card text-foreground min-h-11 w-full rounded-lg border px-3 py-2 text-base;
+  }
+  .field:disabled {
+    @apply opacity-60;
+  }
+  .field-label {
+    @apply text-foreground mb-1 block text-sm font-medium;
+  }
+  .field-hint {
+    @apply text-muted-foreground mt-1 text-sm;
+  }
+  .field-error {
+    @apply text-destructive mt-1 text-sm font-medium;
+  }
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-transparent px-4 py-2 text-sm font-semibold transition-colors select-none disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-maroon-deep;
+  }
+  .btn-accent {
+    @apply bg-vermilion hover:bg-maroon text-white;
+  }
+  .btn-outline {
+    @apply border-input bg-card text-foreground hover:bg-accent;
+  }
+  .btn-ghost {
+    @apply text-foreground hover:bg-accent;
+  }
+  .btn-danger {
+    @apply border-destructive bg-card text-destructive hover:bg-destructive hover:text-white;
+  }
+  .btn-sm {
+    @apply min-h-9 px-3 py-1.5;
+  }
+}
