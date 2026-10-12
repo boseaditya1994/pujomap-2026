@@ -67,3 +67,7 @@ First e2e run: `npx playwright install chromium`.
 - [Vercel deployment](docs/vercel-deployment.md)
 - [Admin guide](docs/admin-guide.md)
 - [Data sourcing guide](docs/data-sourcing.md)
+
+## Licence
+
+[MIT](LICENSE)
