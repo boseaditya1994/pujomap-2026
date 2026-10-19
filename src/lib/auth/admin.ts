@@ -2,6 +2,7 @@ import "server-only";
 import { createHash, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import type { Actor } from "@/lib/domain/types";
 import { isSupabaseConfigured } from "@/lib/env";
 import { createSessionClient } from "@/lib/supabase/server";
@@ -39,8 +40,10 @@ export function adminLoginMode(): "supabase" | "dev-token" | "disabled" {
 
 /** Returns the signed-in administrator, or null. Always evaluated on the server. */
 export async function getAdmin(): Promise<Actor | null> {
-  // Read the request's cookies before anything else: this guarantees every admin
-  // page is rendered per request and can never be prerendered as a static page.
+  // Defer to request time before anything else: admin pages must never be
+  // prerendered, and Supabase Auth reads the clock (Date.now) while checking
+  // the session, which Next.js only allows once the request has started.
+  await connection();
   const cookieStore = await cookies();
   if (isSupabaseConfigured()) {
     const supabase = await createSessionClient();
