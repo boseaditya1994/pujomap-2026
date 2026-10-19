@@ -2,7 +2,7 @@ import type { Dictionary } from "./en";
 
 export const bn: Dictionary = {
   meta: {
-    title: "পুজোম্যাপ ২০২৬",
+    title: "পুজোম্যাপ {festivalYear}",
     tagline: "খুঁজুন। ঘুরুন। উদযাপন করুন।",
     description:
       "কলকাতার দুর্গাপুজোর মণ্ডপ মানচিত্রে খুঁজুন, কোন তথ্য যাচাই করা তা দেখুন, ঠাকুর দেখার পথ সাজান এবং গুগল ম্যাপে খুলুন।",
@@ -37,7 +37,8 @@ export const bn: Dictionary = {
     seeAllRoutes: "সব রুট দেখুন",
     trustTitle: "যা নিশ্চিত, শুধু তা-ই",
     trustVerified: "অবস্থানের উৎস ও যাচাইয়ের তারিখ নথিভুক্ত থাকলে তবেই মণ্ডপকে যাচাই করা বলা হয়।",
-    trustTheme: "শুধু ২০২৬ সালের এবং উৎস-সহ থিমকেই নিশ্চিত দেখানো হয়। আগের বছরের থিম আলাদা করে চিহ্নিত থাকে।",
+    trustTheme:
+      "শুধু {festivalYear} সালের এবং উৎস-সহ থিমকেই নিশ্চিত দেখানো হয়। আগের বছরের থিম আলাদা করে চিহ্নিত থাকে।",
     trustUnknown: "কোনও তথ্য জানা না থাকলে আমরা অনুমান না করে সেটাই জানাই।",
     statsPandals: "তালিকাভুক্ত মণ্ডপ",
     statsVerified: "যাচাই করা",
@@ -94,7 +95,7 @@ export const bn: Dictionary = {
     themeConfirmed: "{year} সালের নিশ্চিত থিম",
     themeUnconfirmed: "{year} সালের জন্য শোনা গেছে, নিশ্চিত নয়",
     themeHistorical: "{year} সালের থিম (আগের বছরের, এ বছরের নয়)",
-    themeUnknown: "২০২৬ সালের থিম এখনও নিশ্চিত হয়নি।",
+    themeUnknown: "{festivalYear} সালের থিম এখনও নিশ্চিত হয়নি।",
     address: "ঠিকানা",
     committee: "আয়োজক কমিটি",
     nearestMetro: "নিকটতম মেট্রো",

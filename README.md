@@ -53,7 +53,8 @@ First e2e run: `npx playwright install chromium`.
 
 ## Trust rules the code enforces
 
-1. A theme is shown as _confirmed_ only if it is for 2026 **and** has a source. Any other year is labelled as an
+1. A theme is shown as _confirmed_ only if it is for the current festival year (2026 by default, set by
+   `NEXT_PUBLIC_FESTIVAL_YEAR`) **and** has a source. Any other year is labelled as an
    earlier year. Enforced in the UI, the validation schema, the CSV importer and a database constraint.
 2. A pandal is _verified_ only with a verification source and date.
 3. Unknown fields say "not recorded". Nothing is filled in by guesswork.

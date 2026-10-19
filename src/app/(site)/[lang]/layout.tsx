@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
     metadataBase: new URL(publicEnv.siteUrl),
     title: { default: `${t.meta.title} — ${t.meta.tagline}`, template: `%s · ${t.meta.title}` },
     description: t.meta.description,
-    applicationName: "PujoMap 2026",
+    applicationName: t.meta.title,
     alternates: { languages: { en: "/en", bn: "/bn" } },
   };
 }

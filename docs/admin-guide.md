@@ -61,3 +61,24 @@ Accepting does not change any data by itself. That is deliberate: every publishe
 ## Audit log
 
 The 200 most recent changes: who, when, what. Use it to trace a wrong edit back to its source.
+
+## Rolling over to a new Puja year
+
+Do this once, a few weeks before the new festival:
+
+1. In the Supabase SQL editor:
+   ```sql
+   update public.app_settings set festival_year = 2027;
+   ```
+2. In Vercel → Settings → Environment Variables, set `NEXT_PUBLIC_FESTIVAL_YEAR` to `2027` for Production and
+   Preview, then redeploy. The site title, theme labels and admin form all follow it.
+3. Last year's confirmed themes now show as an earlier year's theme automatically. To stop the admin form
+   rejecting edits to those pandals, clear their old confirmed status:
+   ```sql
+   update public.pandals set theme_status = 'unconfirmed' where theme_status = 'confirmed' and theme_year < 2027;
+   ```
+4. Start a new data file (for example `data/pandals-2027.csv`) rather than re-importing last year's: its
+   confirmed themes would be rejected.
+
+Keep steps 1 and 2 on the same year. If they differ, the admin form and the database disagree about which
+themes can be confirmed, and saves will fail with an error.

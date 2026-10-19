@@ -1,3 +1,4 @@
+import { FESTIVAL_YEAR } from "@/lib/domain/types";
 import { bn } from "./bn";
 import { en, type Dictionary } from "./en";
 
@@ -7,7 +8,22 @@ export const DEFAULT_LOCALE: Locale = "en";
 
 export const isLocale = (v: string): v is Locale => (LOCALES as readonly string[]).includes(v);
 
-const dictionaries: Record<Locale, Dictionary> = { en, bn };
+/** Fills {festivalYear} throughout a dictionary, in the locale's own digits. */
+function withFestivalYear<T>(value: T, year: string): T {
+  if (typeof value === "string") return value.replaceAll("{festivalYear}", year) as T;
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, withFestivalYear(v, year)])) as T;
+  }
+  return value;
+}
+
+const yearIn = (locale: Locale) =>
+  new Intl.NumberFormat(locale === "bn" ? "bn-IN" : "en-IN", { useGrouping: false }).format(FESTIVAL_YEAR);
+
+const dictionaries: Record<Locale, Dictionary> = {
+  en: withFestivalYear(en, yearIn("en")),
+  bn: withFestivalYear(bn, yearIn("bn")),
+};
 export const getDictionary = (locale: Locale): Dictionary => dictionaries[locale];
 export type { Dictionary };
 

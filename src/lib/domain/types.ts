@@ -1,7 +1,19 @@
 import { z } from "zod";
 
-/** The festival year this deployment covers. Themes from any other year are historical. */
-export const FESTIVAL_YEAR = 2026;
+export const DEFAULT_FESTIVAL_YEAR = 2026;
+
+/** Reads a festival year from configuration, falling back to the default when unset or invalid. */
+export function parseFestivalYear(value: string | undefined): number {
+  const year = Number(value);
+  return Number.isInteger(year) && year >= 2000 && year <= 2100 ? year : DEFAULT_FESTIVAL_YEAR;
+}
+
+/**
+ * The festival year this deployment covers. Themes from any other year are
+ * historical. Set NEXT_PUBLIC_FESTIVAL_YEAR (and the database setting, see
+ * docs/admin-guide.md) to roll over to a new year; it is read at build time.
+ */
+export const FESTIVAL_YEAR = parseFestivalYear(process.env.NEXT_PUBLIC_FESTIVAL_YEAR);
 
 export const REGIONS = ["north", "central", "south", "salt-lake", "dum-dum", "behala", "other"] as const;
 export type RegionId = (typeof REGIONS)[number];

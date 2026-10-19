@@ -3,6 +3,7 @@ import { Hind_Siliguri, Tiro_Bangla } from "next/font/google";
 import Link from "next/link";
 import { Suspense } from "react";
 import { getAdmin } from "@/lib/auth/admin";
+import { FESTIVAL_YEAR } from "@/lib/domain/types";
 import { dataMode } from "@/lib/env";
 import { signOut } from "./actions";
 import "../../globals.css";
@@ -11,7 +12,7 @@ const body = Hind_Siliguri({ subsets: ["latin", "bengali"], weight: ["400", "500
 const display = Tiro_Bangla({ subsets: ["latin", "bengali"], weight: "400", variable: "--font-display" });
 
 export const metadata: Metadata = {
-  title: { default: "Admin · PujoMap 2026", template: "%s · PujoMap admin" },
+  title: { default: `Admin · PujoMap ${FESTIVAL_YEAR}`, template: "%s · PujoMap admin" },
   robots: { index: false, follow: false },
 };
 

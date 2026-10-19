@@ -35,6 +35,7 @@ begin
       values ('x1', 'rls-x1', 'Test address', 22.5, 88.3, 'Testpara', 'north', 'confirmed', 'Old', 'src', 2025);
       r := r || '{"historical_theme_cannot_be_confirmed": false}';
     exception when check_violation then r := r || '{"historical_theme_cannot_be_confirmed": true}';
+    when raise_exception then r := r || '{"historical_theme_cannot_be_confirmed": false}';
     end;
     begin
       insert into public.pandals (name, slug, address, latitude, longitude, neighbourhood, region, verification_status)

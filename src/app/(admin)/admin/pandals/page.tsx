@@ -4,7 +4,7 @@ import { Notice } from "@/components/states";
 import { requireAdminPage } from "@/lib/auth/admin";
 import { getAdminRepository } from "@/lib/data";
 import { getThemeDisplay, matchesQuery } from "@/lib/domain/pandal";
-import { VERIFICATION_STATUSES } from "@/lib/domain/types";
+import { FESTIVAL_YEAR, VERIFICATION_STATUSES } from "@/lib/domain/types";
 import { getDictionary } from "@/lib/i18n";
 
 export const metadata = { title: "Pandals" };
@@ -80,7 +80,7 @@ export default async function AdminPandalsPage({ searchParams }: PageProps<"/adm
                 Verification
               </th>
               <th scope="col" className="px-3 py-2">
-                2026 theme
+                {FESTIVAL_YEAR} theme
               </th>
               <th scope="col" className="px-3 py-2">
                 Visible

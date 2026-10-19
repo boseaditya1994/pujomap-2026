@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
+import { FESTIVAL_YEAR } from "@/lib/domain/types";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "PujoMap 2026",
+    name: `PujoMap ${FESTIVAL_YEAR}`,
     short_name: "PujoMap",
     description: "Discover. Explore. Celebrate. A map of Durga Puja pandals across Kolkata.",
     start_url: "/",

@@ -123,3 +123,21 @@ describe("translations", () => {
     expect(fmt("{count} stops from {place}", { count: 3 })).toBe("3 stops from {place}");
   });
 });
+
+describe("festival year", () => {
+  it("reads a valid year from configuration and falls back to the default otherwise", async () => {
+    const { parseFestivalYear, DEFAULT_FESTIVAL_YEAR } = await import("@/lib/domain/types");
+    expect(parseFestivalYear("2027")).toBe(2027);
+    for (const bad of [undefined, "", "next year", "27", "2026.5", "3000"]) {
+      expect(parseFestivalYear(bad)).toBe(DEFAULT_FESTIVAL_YEAR);
+    }
+  });
+  it("fills the year into both languages, with Bengali digits in Bengali", () => {
+    const en = getDictionary("en");
+    const bn = getDictionary("bn");
+    expect(en.meta.title).toBe("PujoMap 2026");
+    expect(bn.meta.title).toBe("পুজোম্যাপ ২০২৬");
+    expect(JSON.stringify(en)).not.toContain("{festivalYear}");
+    expect(JSON.stringify(bn)).not.toContain("{festivalYear}");
+  });
+});

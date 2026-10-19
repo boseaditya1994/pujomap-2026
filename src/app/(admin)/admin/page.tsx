@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { requireAdminPage } from "@/lib/auth/admin";
 import { getAdminRepository } from "@/lib/data";
+import { FESTIVAL_YEAR } from "@/lib/domain/types";
 
 export default async function AdminHomePage() {
   await requireAdminPage();
@@ -28,7 +29,11 @@ export default async function AdminHomePage() {
       value: count((p) => p.verificationStatus === "unverified"),
       href: "/admin/pandals?status=unverified",
     },
-    { label: "Confirmed 2026 themes", value: count((p) => p.themeStatus === "confirmed"), href: "/admin/pandals" },
+    {
+      label: `Confirmed ${FESTIVAL_YEAR} themes`,
+      value: count((p) => p.themeStatus === "confirmed" && p.themeYear === FESTIVAL_YEAR),
+      href: "/admin/pandals",
+    },
     { label: "Curated routes", value: routes.length, href: "/admin/routes" },
     { label: "Pending submissions", value: pending.length, href: "/admin/submissions" },
   ];

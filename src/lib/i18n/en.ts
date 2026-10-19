@@ -1,6 +1,6 @@
 export const en = {
   meta: {
-    title: "PujoMap 2026",
+    title: "PujoMap {festivalYear}",
     tagline: "Discover. Explore. Celebrate.",
     description:
       "Find Durga Puja pandals across Kolkata on a map, check what is verified, plan a pandal-hopping route and open it in Google Maps.",
@@ -36,7 +36,7 @@ export const en = {
     trustTitle: "Only what we can stand behind",
     trustVerified: "A pandal is marked verified only when its location has a recorded source and a verification date.",
     trustTheme:
-      "A theme is shown as confirmed only for 2026 and only with a source. Earlier years are labelled as such.",
+      "A theme is shown as confirmed only for {festivalYear} and only with a source. Earlier years are labelled as such.",
     trustUnknown: "When we do not know something, we say so instead of guessing.",
     statsPandals: "Pandals listed",
     statsVerified: "Verified",
@@ -93,7 +93,7 @@ export const en = {
     themeConfirmed: "Confirmed {year} theme",
     themeUnconfirmed: "Reported for {year}, not confirmed",
     themeHistorical: "{year} theme (an earlier year, not this year's)",
-    themeUnknown: "The 2026 theme has not been confirmed.",
+    themeUnknown: "The {festivalYear} theme has not been confirmed.",
     address: "Address",
     committee: "Organising committee",
     nearestMetro: "Nearest Metro",

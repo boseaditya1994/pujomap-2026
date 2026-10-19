@@ -56,7 +56,7 @@ The rule: `domain` knows nothing about React, Supabase or Google. UI and data bo
 Indexes: GiST on `location`, GIN on `search`, trigram on `name`, partial b-trees on region and verification status.
 
 Constraints worth knowing: coordinates must fall in the Greater Kolkata box; `theme_status = 'confirmed'` requires
-title, source and `theme_year = 2026`; `verification_status = 'verified'` requires source and date.
+title, source and a `theme_year` equal to the festival year in `app_settings` (enforced by a trigger); `verification_status = 'verified'` requires source and date.
 
 ## Key decisions
 
@@ -93,4 +93,5 @@ title, source and `theme_year = 2026`; `verification_status = 'verified'` requir
 - Favourites do not sync across devices.
 - The in-memory rate limiter is per server instance. The real spending cap is the Google quota.
 - Photos are added by URL; there is no upload UI yet (upload to Supabase Storage and paste the public URL).
-- The 2026 theme rule is a literal in a database constraint and in `FESTIVAL_YEAR`. Next year needs a migration.
+- The festival year lives in two places that must agree: `NEXT_PUBLIC_FESTIVAL_YEAR` (app) and `app_settings.festival_year`
+  (database). See "Rolling over to a new Puja year" in [admin-guide.md](admin-guide.md).
